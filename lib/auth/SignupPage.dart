@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:bada_app/auth/auth_service.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -12,6 +13,7 @@ class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final AuthService _authService = AuthService();
   String errorMessage = '';
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
@@ -48,7 +50,7 @@ class _SignupPageState extends State<SignupPage> {
     });
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await _authService.signUp(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );

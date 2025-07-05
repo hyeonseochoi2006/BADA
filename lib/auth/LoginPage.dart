@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; 
-import 'package:bada_app/frontPage/SignupPage.dart';
+import 'package:bada_app/auth/SignupPage.dart';
+import 'package:bada_app/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,8 +12,55 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
   bool _isPasswordVisible = false;
 
+Future<void> _login() async {
+    if (_emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('이메일과 비밀번호를 입력해주세요.'), backgroundColor: Colors.red),
+      );
+      return;
+    }
+    try {
+      await _authService.signIn(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('로그인 성공!'), backgroundColor: Color(0xFF10B981)),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('로그인 실패: ${e.toString()}'), backgroundColor: Colors.red),
+      );
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,9 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                       
                       // Login Button
                       ElevatedButton(
-                        onPressed: () {
-                          // 로그인 기능 구현
-                        },
+                        onPressed: _login,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF1E3A8A),
                           foregroundColor: Colors.white,
