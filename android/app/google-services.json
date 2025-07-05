@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "633928923667",
+    "project_id": "bada-f52df",
+    "storage_bucket": "bada-f52df.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633928923667:android:b263b2298f6d0153c65de6",
+        "android_client_info": {
+          "package_name": "com.example.bada_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633928923667-t762snug794likkhn3uludbu6lamef1e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bada_app",
+            "certificate_hash": "848f3166337df58e161676cb85972c51a13c1a72"
+          }
+        },
+        {
+          "client_id": "633928923667-po4g1sq5sk3bafe62av0fa1es1t3phi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxJCDzHtzcEnj4mf7w-M4G2_7ThXLaByA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633928923667-po4g1sq5sk3bafe62av0fa1es1t3phi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
