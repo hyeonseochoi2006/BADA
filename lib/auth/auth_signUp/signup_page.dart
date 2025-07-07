@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'signup_ui.dart'; //ui design 
+import 'signup_sys.dart'; //system architecture
+import 'package:bada_app/auth/auth_login/login_page.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bada_app/auth/auth_service.dart';
@@ -10,34 +15,39 @@ class SignupPage extends StatefulWidget {
 }
  
 class _SignupPageState extends State<SignupPage> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final s_emailCtrl = TextEditingController();
+  final s_passwordCtrl = TextEditingController();
+  final s_confirmPasswordCtrl = TextEditingController();
   final AuthService _authService = AuthService();
   String errorMessage = '';
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
   bool _isLoading = false;
 
+  
+  
+  
+  
+  
   Future<void> _signup() async {
     // Validate inputs
-    if (_emailController.text.trim().isEmpty || 
-        _passwordController.text.trim().isEmpty ||
-        _confirmPasswordController.text.trim().isEmpty) {
+    if (s_emailCtrl.text.trim().isEmpty || 
+        s_passwordCtrl.text.trim().isEmpty ||
+        s_confirmPasswordCtrl.text.trim().isEmpty) {
       setState(() {
         errorMessage = '모든 필드를 입력해주세요.';
       });
       return;
     }
 
-    if (_passwordController.text != _confirmPasswordController.text) {
+    if (s_confirmPasswordCtrl.text != s_confirmPasswordCtrl.text) {
       setState(() {
         errorMessage = '비밀번호가 일치하지 않습니다.';
       });
       return;
     }
 
-    if (_passwordController.text.length < 6) {
+    if (s_confirmPasswordCtrl.text.length < 6) {
       setState(() {
         errorMessage = '비밀번호는 최소 6자 이상이어야 합니다.';
       });
@@ -51,8 +61,8 @@ class _SignupPageState extends State<SignupPage> {
 
     try {
       await _authService.signUp(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+        email: s_emailCtrl.text.trim(),
+        password: s_confirmPasswordCtrl.text.trim(),
       );
 
       if (!mounted) return;
@@ -84,6 +94,23 @@ class _SignupPageState extends State<SignupPage> {
       }
     }
   }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   @override
   Widget build(BuildContext context) {
@@ -203,7 +230,7 @@ class _SignupPageState extends State<SignupPage> {
                           
                           // Email Field
                           TextField(
-                            controller: _emailController,
+                            controller: s_emailCtrl,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               labelText: '이메일',
@@ -225,7 +252,7 @@ class _SignupPageState extends State<SignupPage> {
                           
                           // Password Field
                           TextField(
-                            controller: _passwordController,
+                            controller: s_emailCtrl,
                             obscureText: !_isPasswordVisible,
                             decoration: InputDecoration(
                               labelText: '비밀번호',
@@ -258,7 +285,7 @@ class _SignupPageState extends State<SignupPage> {
                           
                           // Confirm Password Field
                           TextField(
-                            controller: _confirmPasswordController,
+                            controller: s_passwordCtrl,
                             obscureText: !_isConfirmPasswordVisible,
                             decoration: InputDecoration(
                               labelText: '비밀번호 확인',
